@@ -4,13 +4,18 @@ pub mod part2;
 
 use crate::{Part, Output};
 
+pub type Input = Vec<u32>;
+
 pub fn run(part: Part) -> Output {
+    let input = input::read();
+
     match part {
-        Part::One => part1::solve(),
-        Part::Two => part2::solve(),
+        Part::One => part1::solve(&input),
+        Part::Two => part2::solve(&input),
     }
 }
 
 pub fn run_both() -> (Output, Output) {
-    (part1::solve(), part2::solve())
+    let input = input::read();
+    (part1::solve(&input), part2::solve(&input))
 }
