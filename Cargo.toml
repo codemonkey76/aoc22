@@ -1,0 +1,15 @@
+[package]
+name = "aoc"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "aoc"
+path = "src/bin.rs"
+
+[lib]
+name = "aoc_lib"
+path = "src/lib.rs"
+
+[dependencies]
+clap = { version = "4.3.4", features = ["derive"] }
