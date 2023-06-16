@@ -1,8 +1,7 @@
 use aoc_lib::*;
 use clap::Parser;
 use std::time::{Instant, Duration};
-use std::fmt::{Display, Formatter, Result as FmtResult};
-use num_format::{Locale, ToFormattedString};
+use std::fmt::{Debug, Display, Formatter, Result as FmtResult};
 
 /// Simple program to greet a person
 #[derive(Parser, Debug)]
@@ -70,12 +69,13 @@ struct RunResult {
 
 impl Display for RunResult {
     fn fmt(&self, f: &mut Formatter<'_>) -> FmtResult {
+        let microseconds = self.duration.as_secs_f32()*1_000_000.0;
         writeln!(f, "***************************************************")?;
         writeln!(f, "*    Advent of Code: 2022, Day {:0>2}                 *", self.day)?;
         writeln!(f, "*        Solution for...                          *")?;
-        writeln!(f, "*            Part One: {:_>6}                     *", self.answer_one.to_formatted_string(&Locale::en))?;
-        writeln!(f, "*            Part Two: {:_>6}                     *", self.answer_two)?;
-        writeln!(f, "*    Run Time: {:>10?}                             *", self.duration)?;
+        writeln!(f, "*            Part One: {:>12}               *", self.answer_one.to_string())?;
+        writeln!(f, "*            Part Two: {:>12}               *", self.answer_two.to_string())?;
+        writeln!(f, "*    Run Time: {:>10.4}µs                       *", microseconds)?;
         writeln!(f, "***************************************************")
     }
 }

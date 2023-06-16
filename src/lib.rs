@@ -1,6 +1,7 @@
 use std::cmp::PartialEq;
 use std::fmt::{Display, Formatter, Result as DisplayResult};
 pub mod day01;
+use num_format::{Locale, ToFormattedString};
 
 pub enum Part {
     One,
@@ -24,7 +25,7 @@ macro_rules! impl_output_from {
             fn fmt(&self, f: &mut Formatter<'_>) -> DisplayResult {
                 match self {
                     $(
-                    Output::$e(v) => write!(f, "{v}"),
+                    Output::$e(v) => write!(f, "{}", v.to_formatted_string(&Locale::en)),
                     )*
                 }
             }
@@ -42,8 +43,7 @@ impl_output_from! {
     (I16, i16),
     (I32, i32),
     (I64, i64),
-    (I128, i128),
-    (String, String)
+    (I128, i128)
 }
 
 impl<T: Display> PartialEq<T> for Output {
