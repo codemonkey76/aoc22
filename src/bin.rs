@@ -3,7 +3,6 @@ use clap::Parser;
 use std::time::{Instant, Duration};
 use std::fmt::{Debug, Display, Formatter, Result as FmtResult};
 
-/// Simple program to greet a person
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 struct Args {
@@ -45,6 +44,7 @@ fn run_day(day: u8, timer: &Instant) -> RunResult {
 
     let run_both = match day {
         1 => day01::run_both,
+        2 => day02::run_both,
         _ => panic!("Day not implemented"),
     };
 

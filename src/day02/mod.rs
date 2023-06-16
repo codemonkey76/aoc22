@@ -1,8 +1,8 @@
+use crate::Output;
+
 pub mod input;
 pub mod part1;
 pub mod part2;
-
-use crate::Output;
 
 pub type Input = Vec<u32>;
 
