@@ -2,7 +2,6 @@ use std::num::ParseIntError;
 
 use crate::day01::Input;
 
-
 const INPUT: &str = include_str!("../../input/01/input.txt");
 
 pub fn read() -> Input {
@@ -10,11 +9,11 @@ pub fn read() -> Input {
         .trim()
         .split("\n\n")
         .map(calorie_count)
-        .collect::<Result<Input,_>>()
+        .collect::<Result<_, _>>()
         .expect("Failed to parse input")
 }
 
-fn calorie_count(value: &str) -> Result<u32,ParseIntError> {
+fn calorie_count(value: &str) -> Result<u32, ParseIntError> {
     let mut total = 0;
 
     for line in value.lines() {

@@ -4,49 +4,46 @@ pub mod day01;
 
 pub enum Part {
     One,
-    Two
+    Two,
 }
 
-#[derive(Debug, Eq)]
-pub enum Output {
-    U8(u8),
-    U16(u16),
-    U32(u32),
-    String(String),
-}
+macro_rules! impl_output_from {
+    ($(($e:tt, $t:ty) ),*) => {
+        #[derive(Debug, Eq)]
+        pub enum Output {
+            $( $e($t), )*
+        }
 
-impl From<u8> for Output {
-    fn from(value: u8) -> Self {
-        Output::U8(value)
-    }
-}
-impl From<u16> for Output {
-    fn from(value: u16) -> Self {
-        Output::U16(value)
-    }
-}
+        $(
+            impl From<$t> for Output {
+                fn from(value: $t) -> Self { Output::$e(value) }
+            }
+        )*
 
-impl From<u32> for Output {
-    fn from(value: u32) -> Self {
-        Output::U32(value)
-    }
-}
-
-impl From<String> for Output {
-    fn from(value: String) -> Self {
-        Output::String(value)
-    }
-}
-
-impl Display for Output {
-    fn fmt(&self, f: &mut Formatter<'_>) -> DisplayResult {
-        match self {
-            Output::U8(v) => write!(f, "{v}"),
-            Output::U16(v) => write!(f, "{v}"),
-            Output::U32(v) => write!(f, "{v}"),
-            Output::String(v) => write!(f, "{v}"),
+        impl Display for Output {
+            fn fmt(&self, f: &mut Formatter<'_>) -> DisplayResult {
+                match self {
+                    $(
+                    Output::$e(v) => write!(f, "{v}"),
+                    )*
+                }
+            }
         }
     }
+}
+
+impl_output_from! {
+    (U8, u8),
+    (U16, u16),
+    (U32, u32),
+    (U64, u64),
+    (U128, u128),
+    (I8, i8),
+    (I16, i16),
+    (I32, i32),
+    (I64, i64),
+    (I128, i128),
+    (String, String)
 }
 
 impl<T: Display> PartialEq<T> for Output {
@@ -54,4 +51,3 @@ impl<T: Display> PartialEq<T> for Output {
         *self.to_string() == other.to_string()
     }
 }
-

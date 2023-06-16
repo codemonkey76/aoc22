@@ -1,5 +1,5 @@
-use crate::Output;
 use crate::day01::Input;
+use crate::Output;
 
 pub fn solve(input: &Input) -> Output {
     input
@@ -9,4 +9,3 @@ pub fn solve(input: &Input) -> Output {
         .expect("Some input required")
         .into()
 }
-

@@ -1,6 +1,6 @@
 use aoc_lib::*;
-use std::fmt::{Display, Formatter, Result as FmtResult};
 use clap::Parser;
+use std::fmt::{Display, Formatter, Result as FmtResult};
 
 /// Simple program to greet a person
 #[derive(Parser, Debug)]
@@ -9,7 +9,7 @@ struct Args {
     /// Day to run
     #[arg(short, long)]
     day: Option<u8>,
-    
+
     /// Run all days
     #[arg(short, long)]
     all: bool,
@@ -38,7 +38,6 @@ fn main() {
     println!("No day specified");
 }
 
-
 fn run_day(day: u8) -> RunResult {
     println!("Running day: {}", day);
 
@@ -52,7 +51,7 @@ fn run_day(day: u8) -> RunResult {
     RunResult {
         day,
         answer_one,
-        answer_two
+        answer_two,
     }
 }
 
@@ -64,6 +63,10 @@ struct RunResult {
 
 impl Display for RunResult {
     fn fmt(&self, f: &mut Formatter<'_>) -> FmtResult {
-        write!(f, "Day: {}\n\tPart One: {}\n\tPart Two: {}", self.day, self.answer_one, self.answer_two)
-    } 
+        write!(
+            f,
+            "Day: {}\n\tPart One: {}\n\tPart Two: {}",
+            self.day, self.answer_one, self.answer_two
+        )
+    }
 }

@@ -1,8 +1,8 @@
-use crate::Output;
 use crate::day01::Input;
+use crate::Output;
 
 pub fn solve(input: &Input) -> Output {
-   largest(input, 3).iter().sum::<u32>().into()
+    largest(input, 3).iter().sum::<u32>().into()
 }
 
 pub fn largest(input: &Input, n: usize) -> Vec<u32> {
