@@ -13,3 +13,4 @@ path = "src/lib.rs"
 
 [dependencies]
 clap = { version = "4.3.4", features = ["derive"] }
+num-format = "0.4.4"
